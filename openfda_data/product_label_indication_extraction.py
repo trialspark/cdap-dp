@@ -5,6 +5,7 @@ import nltk
 import psycopg2
 import os
 import csv
+import json
 
 from nltk.tokenize import WordPunctTokenizer
 from nltk.tokenize.treebank import TreebankWordDetokenizer
@@ -105,7 +106,7 @@ if __name__ == "__main__":
         if output_text == "none":
             output_text == ""
             
-        writer.writerow([record_id, product_label_id, output_text.split()])
+        writer.writerow([record_id, product_label_id, json.dumps(output_text.split())])
         record_id += 1
         if record_id % 20000 == 0:
             print(f"Processed {record_id} records!")
